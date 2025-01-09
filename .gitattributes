@@ -1,0 +1,14 @@
+# Tüm metin dosyalarını LF'ye zorla
+* text eol=lf
+
+# Windows betikleri için CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Unix betikleri için LF
+*.sh text eol=lf
+
+# İkili dosyalar (resimler vb.) dönüşüm yapma
+*.png binary
+*.jpg binary
+*.exe binary
