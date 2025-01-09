@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+</head>
+<body>
+    <h1>Chatbot</h1>
+    <form id="chat-form" method="post">
+        {% csrf_token %}
+        <label for="language">Select Language:</label>
+        <select id="language" name="language">
+            <option value="en">English</option>
+            <option value="tr">Türkçe</option>
+        </select>
+        <br><br>
+        <label for="message">Your Message:</label>
+        <input type="text" id="message" name="message" required>
+        <button type="submit">Send</button>
+    </form>
+    <div id="response"></div>
+    <script>
+        document.getElementById('chat-form').onsubmit = async function(e) {
+            e.preventDefault();
+            const message = document.getElementById('message').value;
+            const language = document.getElementById('language').value;
+            const responseDiv = document.getElementById('response');
+            try {
+                const response = await fetch('', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    },
+                    body: `message=${encodeURIComponent(message)}&language=${encodeURIComponent(language)}`
+                });
+                const data = await response.json();
+                responseDiv.textContent = data.response;
+            } catch (error) {
+                responseDiv.textContent = "An error occurred. Please try again.";
+            }
+        }
+    </script>
+</body>
+</html>
