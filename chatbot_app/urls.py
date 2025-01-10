@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from .views import chat  # Chat fonksiyonunu import ediyoruz
 
 urlpatterns = [
-    path('', views.chat, name='chat'),  # Ana sayfa chat görünümüne yönlendirilir
+    path('chat/', chat, name='chat'),  # /chat/ endpointini tanımlıyoruz
 ]
