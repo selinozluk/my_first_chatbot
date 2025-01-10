@@ -1,7 +1,7 @@
-from django.contrib import admin  # admin modülünü import ediyoruz
-from django.urls import path, include
+from django.contrib import admin
+from django.urls import path, include  # include ekliyoruz
 
 urlpatterns = [
-    path('admin/', admin.site.urls),  # Admin paneli
-    path('', include('chatbot_app.urls')),  # Chatbot uygulaması için yönlendirme
+    path('admin/', admin.site.urls),
+    path('', include('chatbot_app.urls')),  # chatbot_app'in URL'lerini ana projeye bağlıyoruz
 ]
